@@ -1,6 +1,13 @@
-FROM python:3.8
-COPY . /app
+FROM python:3.8-slim
+
 WORKDIR /app
+
+ADD . /app
+
+RUN apt-get update && apt-get install -y libgomp1
+
 RUN pip install -r requirements.txt
-EXPOSE 8501
-CMD ["python", "flask_api.py"]
+
+EXPOSE 8000
+
+CMD ["python", "flask_api.py"] 
