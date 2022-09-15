@@ -1,12 +1,11 @@
-# Build and deploy your first machine learning web app
-#### A beginner’s guide to train and deploy machine learning pipelines in Python using PyCaret
+# Web app and web api to predict insurance bills
 
-Read the complete post: https://medium.com/@moez_62905/build-and-deploy-your-first-machine-learning-web-app-280c53d3800a
-
-- Official Website : https://www.pycaret.org
-
-- Follow us on LinkedIn : https://www.linkedin.com/company/pycaret/
-
-- Subscribe to our YouTube : https://www.youtube.com/channel/UCxA1YTYJ9BEeo50lxyI_B3g 
-
-- PyCaret repository : https://www.github.com/pycaret/pycaret
+- first check out the experiment folder with the notebook
+- then check out the main folder with the streamlit app implementation
+- finally check out the flask-api in the respective folder
+- note: that the app and the api are in different folders having different requirement files and docker files; mixing them is no good
+- note: the streamlit api is kinda selfexplaining whereas the api can be tested like this:\
+    `import requests`\
+    `url = 'https://insurancebillapi.azurewebsites.net/predict_api'`\
+    `pred = requests.post(url,json={'age':35, 'sex':'male', 'bmi':59, 'children':1, 'smoker':'no', 'region':'northwest'})`\
+    `print(pred.json())`
