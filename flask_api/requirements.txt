@@ -1,0 +1,4 @@
+Flask==1.1.2
+numpy==1.21.6
+pandas==1.4.2
+pycaret==2.3.10
