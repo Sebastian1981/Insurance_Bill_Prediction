@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -5,6 +7,14 @@ from pycaret.regression import *
 from PIL import Image
 
 st.title('Demo App: Predicting Health Insurance Costs')
+
+
+
+# set directories
+rootdir = os.getcwd()
+IMAGEPATH = Path(rootdir) / 'images'
+Path(IMAGEPATH).mkdir(parents=True, exist_ok=True)
+
 
 # Initialize session state vars
 if 'sex' not in st.session_state:
@@ -14,13 +24,13 @@ if 'smoker' not in st.session_state:
 
 # load images
 if st.session_state.sex == 'male':
-    image = Image.open('.\images\male.png')
+    image = Image.open(IMAGEPATH / 'male.png')
     st.image(image, caption='You selected "male" gender.')
 elif st.session_state.sex == 'female':
-    image = Image.open('.\images\female.png')
+    image = Image.open(IMAGEPATH / 'female.png')
     st.image(image, caption='You selected "female" gender.')
 elif st.session_state.sex == 'other':
-    image = Image.open('.\images\no_gender.png')
+    image = Image.open(IMAGEPATH / 'no_gender.png')
     st.image(image, caption='You selected "other" gender.')    
 
 # load trained model
@@ -38,10 +48,10 @@ input = np.array([age, sex, bmi, children, smoker, region])
 data_unseen = pd.DataFrame([input], columns = features)
 
 # make new prediction
-if st.button('predict bill'):
-    prediction = predict_model(model, data=data_unseen, round = 0)
-    prediction = int(prediction.Label[0])
-    st.header('The health insurance bill is expected to be {} dollars.'.format(prediction))
+prediction = predict_model(model, data=data_unseen, round = 0)
+prediction = int(prediction.Label[0])
+st.subheader('Insurance Bill Prediction: {} dollar'.format(prediction))
+
 
 
 
