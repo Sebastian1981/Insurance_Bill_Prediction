@@ -14,13 +14,13 @@ if 'smoker' not in st.session_state:
 
 # load images
 if st.session_state.sex == 'male':
-    image = Image.open('./images/male.png')
+    image = Image.open('.\images\male.png')
     st.image(image, caption='You selected "male" gender.')
 elif st.session_state.sex == 'female':
-    image = Image.open('./images/female.png')
+    image = Image.open('.\images\female.png')
     st.image(image, caption='You selected "female" gender.')
 elif st.session_state.sex == 'other':
-    image = Image.open('./images/no_gender.png')
+    image = Image.open('.\images\no_gender.png')
     st.image(image, caption='You selected "other" gender.')    
 
 # load trained model
