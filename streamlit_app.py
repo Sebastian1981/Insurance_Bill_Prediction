@@ -9,29 +9,12 @@ from PIL import Image
 st.title('Demo App: Predicting Health Insurance Costs')
 
 
-
-# set directories
-rootdir = os.getcwd()
-IMAGEPATH = Path(rootdir) / 'images'
-Path(IMAGEPATH).mkdir(parents=True, exist_ok=True)
-
-
 # Initialize session state vars
 if 'sex' not in st.session_state:
     st.session_state.sex = 'male'
 if 'smoker' not in st.session_state:
     st.session_state.smoker = 'no'
 
-# load images
-if st.session_state.sex == 'male':
-    image = Image.open(IMAGEPATH / 'male.png')
-    st.image(image, caption='You selected "male" gender.')
-elif st.session_state.sex == 'female':
-    image = Image.open(IMAGEPATH / 'female.png')
-    st.image(image, caption='You selected "female" gender.')
-elif st.session_state.sex == 'other':
-    image = Image.open(IMAGEPATH / 'no_gender.png')
-    st.image(image, caption='You selected "other" gender.')    
 
 # load trained model
 model = load_model('deployment_14092022')
